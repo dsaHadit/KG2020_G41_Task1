@@ -23,10 +23,10 @@ public class MoonPlanet implements Drawable{
         Area[] areas = new Area[plSize/8];
         int rr,xx,yy;
         for (int i=0; i<areas.length; i++){
-            rr = 10 + (int)(Math.random());
+            rr = 1 + (int)(Math.random()*3);
             xx = (int)((Math.random()*plSize));
             yy = (int)((Math.random()*plSize));
-            areas[i] = new Area(new Ellipse2D.Double(xx,yy,plSize/8,plSize/8));
+            areas[i] = new Area(new Ellipse2D.Double(xx,yy,plSize/12*rr,plSize/12*rr));
         }
 
         gr.setColor(pcolor1);

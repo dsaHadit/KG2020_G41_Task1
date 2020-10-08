@@ -11,7 +11,7 @@ public class DrawPanel extends JPanel {
         Graphics2D gr = (Graphics2D) g;
 
         gr.setColor(Color.BLACK);
-        gr.fillRect(0,0,1920,1024);
+        gr.fillRect(0,0,getWidth(),getHeight());
 
         int starCount = 100 + (int)(Math.random() * 300);
         int rd = -180 + (int)(Math.random()*180);
