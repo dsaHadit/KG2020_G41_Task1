@@ -4,28 +4,49 @@ public class Star implements Drawable {
     private int x;
     private int y;
     private int size;
+    private int rd;
+    private int rayCount;
+    private int rayLength;
     private Color color;
 
-    Star(int x, int y, int size, Color color) {
+    Star(int x, int y, int size, int rd, int rayCount, int rayLength, Color color) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
+        this.rd = rd;
+        this.rayCount = rayCount;
+        this.rayLength = rayLength;
     }
 
     @Override
     public void draw(Graphics2D gr) {
         gr.setColor(color);
-        Point p1 = new Point(x, y-size/2);//
-        Point p2 = new Point(x-size/18 , y-size/18);
-        Point p3 = new Point(x-size/2, y);//
-        Point p4 = new Point(x-size/18 , y+size/18);
-        Point p5 = new Point(x, y+size/2);//
-        Point p6 = new Point(x+size/18, y+size/18 );
-        Point p7 = new Point(x+size/2, y);//
-        Point p8 = new Point(x+size/18, y-size/18 );
-        int[] xCords = {p1.x, p2.x, p3.x, p4.x, p5.x, p6.x, p7.x, p8.x};
-        int[] yCords = {p1.y, p2.y, p3.y, p4.y, p5.y, p6.y, p7.y, p8.y};
-        gr.fillPolygon(xCords,yCords,8);
+
+        gr.translate(x,y);
+        gr.rotate(Math.toRadians(rd));
+
+        int[] xCords = new int[rayCount*2];
+        int[] yCords = new int[rayCount*2];
+        double itrRad = 0;
+
+        for (int i=0; i<rayCount*2; i++)
+        {
+            if (i%2==0) {
+                xCords[i] = (int)(Math.cos(itrRad)*size/2);
+                yCords[i] = (int)(Math.sin(itrRad)*size/2);
+            }
+            else {
+                xCords[i] = (int)(Math.cos(itrRad)*size/2/(1+rayLength));
+                yCords[i] = (int)(Math.sin(itrRad)*size/2/(1+rayLength));
+            }
+            itrRad += Math.PI/(rayCount);
+        }
+
+        gr.fillPolygon(xCords,yCords,rayCount*2);
+
+        gr.rotate(Math.toRadians(-rd));
+        gr.translate(-x,-y);
+
     }
 }

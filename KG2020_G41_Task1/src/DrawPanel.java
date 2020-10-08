@@ -13,7 +13,10 @@ public class DrawPanel extends JPanel {
         gr.setColor(Color.BLACK);
         gr.fillRect(0,0,1920,1024);
 
-        int starCount = 150 + (int)(Math.random() * 60);
+        int starCount = 100 + (int)(Math.random() * 300);
+        int rd = -180 + (int)(Math.random()*180);
+        int rayCount = 4 + (int)(Math.random()*4);
+        int rayLength = 3 + (int)(Math.random()*3);
 
         Color color = new Color(255,255,255);
 
@@ -29,7 +32,7 @@ public class DrawPanel extends JPanel {
                 color = new Color(150,150,255);
             }
             */
-            Star star = new Star((int) (Math.random() * 1920),(int) (Math.random() * 1080),36+ (int) (Math.random() * 36),color);
+            Star star = new Star((int) (Math.random() * getWidth()),(int) (Math.random() * getHeight()),36+ (int) (Math.random() * 36),rd,rayCount,rayLength,color);
             star.draw(gr);
         }
 
@@ -39,8 +42,8 @@ public class DrawPanel extends JPanel {
         //int ringCount = 4;
         int inclination = -90 + (int) (Math.random()*180);
         //int inclination = 32;
-        int gplanetX =300 + (int) (Math.random()*1520);
-        int gplanetY =200 + (int) (Math.random()*680);
+        int gplanetX =plSize/2 + (int)(Math.random()*(getWidth()-plSize));
+        int gplanetY =plSize/2 + (int)(Math.random()*(getHeight()-plSize));
         int r = 130 + (int) (Math.random()*60);
         int gg = 130 + (int) (Math.random()*60);
         int b = 130 + (int) (Math.random()*60);
@@ -57,8 +60,9 @@ public class DrawPanel extends JPanel {
         Color rcolor = new Color(r, gg, b);
         //Color rcolor = new Color(145,145,80);
         //Values in comments define something similar to Saturn
+        int texture = 20 + (int) (Math.random()*80);
 
-        RingedPlanet rplanet = new RingedPlanet(gplanetX,gplanetY,plSize,ringCount,inclination,pcolor1,pcolor2,rcolor);
+        RingedPlanet rplanet = new RingedPlanet(gplanetX,gplanetY,plSize,ringCount,inclination,texture,pcolor1,pcolor2,rcolor);
         rplanet.draw(gr);
         r = 130 + (int) (Math.random()*60);
         gg = 130 + (int) (Math.random()*60);
@@ -68,10 +72,12 @@ public class DrawPanel extends JPanel {
         gg -= (5+ (int) (Math.random() * 40));
         b -= (5+ (int) (Math.random() * 40));
         Color mcolor2 = new Color(r, gg, b);
-        gplanetX =300 + (int) (Math.random()*1520);
-        gplanetY =200 + (int) (Math.random()*680);
         plSize = 200 + (int)(Math.random()*250);
+        gplanetX =(int) (Math.random()*(getWidth()-plSize));
+        gplanetY =(int) (Math.random()*(getHeight()-plSize));
+
         MoonPlanet mplanet = new MoonPlanet(gplanetX,gplanetY,plSize,mcolor1,mcolor2);
         mplanet.draw(gr);
+        //Star star = new Star(getWidth()/2,getHeight()/2,1000,90,30,6,Color.RED); star.draw(gr);
     }
 }
