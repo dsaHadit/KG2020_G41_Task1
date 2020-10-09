@@ -18,7 +18,7 @@ Random planets & stars generation
 
 Очень много используется Area, не описанная в методичке, вместе с areaName1.substract(areaName2) (исключение) и areaName1.add(areaName2) (добавление)
 
-Также используется не описаныый в методичке, но найденный мной на просторах интернета .setComposite(), вот пример:
+Также используется не описанный в методичке, но найденный мной на просторах интернета .setComposite(), вот пример:
 
 gr.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));
         gr.fillRect(0,0,width,height);
