@@ -21,7 +21,9 @@ Random planets & stars generation
 Также используется не описанный в методичке, но найденный мной на просторах интернета .setComposite(), вот пример:
 
 gr.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));
+
 gr.fillRect(0,0,width,height);
+
 gr.setComposite(oldComposite);
 
 Здесь он затемняет окно, и по сути это установка полупрозручного фильтра в Graphics2D
